@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:chatterbox/widgets/user_image_picker.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +18,7 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final _formKey = GlobalKey<FormState>();
   var _isLogin = true;
+  var _enteredName = '';
   var _enteredEmail = '';
   var _enteredPassword = '';
   File? _selectedImage;
@@ -47,6 +49,15 @@ class _AuthScreenState extends State<AuthScreen> {
             .child('${userCredentials.user!.uid}.jpg');
         await storageRef.putFile(_selectedImage!);
         final imageUrl = await storageRef.getDownloadURL();
+
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredentials.user!.uid)
+            .set({
+          'name' : _enteredName,
+          'email': _enteredEmail,
+          'image': imageUrl,
+        });
         print(imageUrl);
       }
     } on FirebaseAuthException catch (error) {
@@ -89,6 +100,24 @@ class _AuthScreenState extends State<AuthScreen> {
                             UserImagePicker(
                               onPickImage: (pickedImage) {
                                 _selectedImage = pickedImage;
+                              },
+                            ),
+                          if (!_isLogin)
+                            TextFormField(
+                              decoration: const InputDecoration(
+                                labelText: 'Username',
+                              ),
+                              keyboardType: TextInputType.name,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.trim().length < 3 ||
+                                    value.trim().isEmpty) {
+                                  return 'Please enter at least 3 characters.';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredName = value!;
                               },
                             ),
                           TextFormField(

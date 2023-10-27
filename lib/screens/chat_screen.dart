@@ -1,3 +1,4 @@
+import 'package:chatterbox/widgets/new_message.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class ChatScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ITS Cohorts'),
+        title: const Text('Chatterbox'),
         actions: [
           IconButton(
               onPressed: () {
@@ -18,7 +19,7 @@ class ChatScreen extends StatelessWidget {
         ],
       ),
       body: const Center(
-        child: Text('Logged in!'),
+        child: NewMessage(),
       ),
     );
   }
