@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -18,22 +19,35 @@ class _NewMessageState extends State<NewMessage> {
     super.dispose();
   }
 
-  void _sendMessage() {
+  void _sendMessage() async {
     final enteredMessage = _messageController.text;
 
     if (enteredMessage.trim().isEmpty) {
       return;
     }
-
-    // FirebaseFirestore.instance.collection('chats').doc().set()
-
+    FocusScope.of(context).unfocus();
     _messageController.clear();
+
+    final user = FirebaseAuth.instance.currentUser!;
+
+    final userData = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    await FirebaseFirestore.instance.collection('chats').add({
+      'text': enteredMessage,
+      'createdAt': Timestamp.now(),
+      'userId': user.uid,
+      'username': userData.data()!['name'],
+      'userImage': userData.data()!['image']
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(bottom: 15, left: 15, right: 2),
+      padding: const EdgeInsets.only(bottom: 20, left: 20, right: 2),
       child: Row(
         children: [
           Expanded(
@@ -44,7 +58,11 @@ class _NewMessageState extends State<NewMessage> {
               decoration: const InputDecoration(hintText: 'Message'),
             ),
           ),
-          IconButton(onPressed: _sendMessage, icon: const Icon(Icons.send))
+          IconButton(
+            color: Theme.of(context).colorScheme.primary,
+            onPressed: _sendMessage,
+            icon: const Icon(Icons.send),
+          ),
         ],
       ),
     );
