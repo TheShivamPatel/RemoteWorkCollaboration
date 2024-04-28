@@ -65,6 +65,7 @@ dependencies:
   zego_uikit_prebuilt_call: ^4.5.1
   zego_uikit_prebuilt_video_conference: ^2.7.4
   provider: ^6.1.2
+  multi_dropdown: ^2.1.4
 
 
 
