@@ -9,6 +9,7 @@ class MessageBubble extends StatelessWidget {
     required this.username,
     required this.message,
     required this.isMe,
+    required this.chatId,
   }) : isFirstInSequence = true;
 
   // Create a amessage bubble that continues the sequence.
@@ -16,6 +17,7 @@ class MessageBubble extends StatelessWidget {
     super.key,
     required this.message,
     required this.isMe,
+    required this.chatId,
   })  : isFirstInSequence = false,
         userImage = null,
         username = null;
@@ -35,6 +37,7 @@ class MessageBubble extends StatelessWidget {
   // Not required if the message is not the first in a sequence.
   final String? username;
   final String message;
+  final String chatId;
 
   // Controls how the MessageBubble will be aligned.
   final bool isMe;

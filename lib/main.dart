@@ -1,44 +1,51 @@
+import 'package:chatterbox/firebase_options.dart';
+import 'package:chatterbox/provider/task_list_provider.dart';
 import 'package:chatterbox/screens/auth_screen.dart';
+import 'package:chatterbox/screens/bottom_tab_views/bottom_tab.dart';
 import 'package:chatterbox/screens/chat_screen.dart';
-import 'package:chatterbox/screens/splash_screen.dart';
+import 'package:chatterbox/screens/home_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  runApp(const App());
+  runApp(MyApp());
 }
 
-class App extends StatelessWidget {
-  const App({super.key});
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'FlutterChat',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData().copyWith(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 63, 17, 177)),
-      ),
-      home: StreamBuilder(
-        stream: FirebaseAuth.instance.authStateChanges(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const SplashScreen();
-          }
+    return MultiProvider(
 
-          if (snapshot.hasData) {
-            return const ChatScreen();
-          }
-          return const AuthScreen();
-        },
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaskListProvider()),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.red,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          scaffoldBackgroundColor: Colors.white,
+        ),
+        home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, userSnapshot) {
+            if (userSnapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: Text('Welcome'),);
+            }
+            if (userSnapshot.hasData) {
+              return const DashboardTabLayout();
+            }
+            return AuthScreen();
+          },
+        ),
       ),
     );
   }

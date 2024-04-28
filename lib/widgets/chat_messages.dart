@@ -54,6 +54,7 @@ class ChatMessages extends StatelessWidget {
             if (nextUserIsSave) {
               return MessageBubble.next(
                 message: chatMessage['text'],
+                chatId: chatMessage['chatId'],
                 isMe: authenticatedUser.uid == currentMessageUserId,
               );
             } else {
@@ -61,7 +62,9 @@ class ChatMessages extends StatelessWidget {
                 userImage: chatMessage['userImage'],
                 username: chatMessage['username'],
                 message: chatMessage['text'],
-                isMe: authenticatedUser.uid == currentMessageUserId,);
+                chatId: chatMessage['chatId'],
+                isMe: authenticatedUser.uid == currentMessageUserId,
+              );
             }
           },
         );

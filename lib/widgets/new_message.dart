@@ -40,7 +40,9 @@ class _NewMessageState extends State<NewMessage> {
       'createdAt': Timestamp.now(),
       'userId': user.uid,
       'username': userData.data()!['name'],
-      'userImage': userData.data()!['image']
+      'userImage': userData.data()!['image'],
+      // 'chatId': userData.data()!['chatId'],
+      'chatId' : '12'
     });
   }
 
