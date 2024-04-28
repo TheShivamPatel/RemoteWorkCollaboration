@@ -31,15 +31,42 @@ dependencies:
   flutter:
     sdk: flutter
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.20.0
-  firebase_auth: ^4.12.0
-  firebase_storage: ^11.4.0
   image_picker: ^1.0.4
-  cloud_firestore: ^4.12.1
+  firebase_core: ^2.25.2
+  firebase_auth: ^4.17.8
+  firebase_storage: ^11.6.3
+  cloud_firestore: ^4.15.2
+#  cloud_firestore_web: ^3.10.2
+#  flutter_webrtc: ^0.9.48+hotfix.1
+
+#  firebase_messaging:
+#  firebase_core:
+#  firebase_messaging_platform_interface:
+#  uuid: 3.0.6
+#  http: ^0.13.4
+#  hmssdk_flutter:
+#    git:
+#      url: https://github.com/100mslive/100ms-flutter.git
+#      ref: plugin-android-fix
+#  permission_handler: 10.2.0
+#  flutter_callkit_incoming:
+#  cloud_functions:
+#  draggable_widget: 2.0.0
+#  share_plus: 6.3.0
+#  country_picker: ^2.0.25
+  curved_labeled_navigation_bar: ^2.0.2
+  curved_navigation_bar: ^1.0.3
+  percent_indicator: ^4.2.3
+  intl: ^0.19.0
+  calendar_view: ^1.1.0
+  zego_uikit_prebuilt_call: ^4.5.1
+  zego_uikit_prebuilt_video_conference: ^2.7.4
+  provider: ^6.1.2
+
+
 
 dev_dependencies:
   flutter_test:
