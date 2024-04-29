@@ -1,16 +1,11 @@
-# chatterbox
+# Checkedin - Remote Work Collaboration
 
-A new Flutter project.
+Tool to enhance collaboration, communication, and productivity for remote teams working
 
-## Getting Started
+## TechStack
+* Flutter 
+* Firebase
+* Zegocloud
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Screen Shots
+![Untitled design](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/4a4eab45-5c60-4bb1-8c2c-ff7f6ec5fa31)
