@@ -4,7 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewMessage extends StatefulWidget {
-  const NewMessage({super.key});
+  const NewMessage({super.key, required this.chatId});
+
+  final String chatId;
 
   @override
   State<NewMessage> createState() => _NewMessageState();
@@ -42,7 +44,7 @@ class _NewMessageState extends State<NewMessage> {
       'username': userData.data()!['name'],
       'userImage': userData.data()!['image'],
       // 'chatId': userData.data()!['chatId'],
-      'chatId' : '12'
+      'chatId' : widget.chatId
     });
   }
 

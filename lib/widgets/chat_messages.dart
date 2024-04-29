@@ -5,7 +5,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ChatMessages extends StatelessWidget {
-  const ChatMessages({super.key});
+  const ChatMessages({super.key, required this.chatId});
+
+  final String chatId;
 
   @override
   Widget build(BuildContext context) {
@@ -35,15 +37,17 @@ class ChatMessages extends StatelessWidget {
         }
 
         final loadingMessages = chatSnapshot.data!.docs;
+        final specialIdMessages = loadingMessages
+            .where((message) => message['chatId'] == chatId);
 
         return ListView.builder(
           padding: const EdgeInsets.only(bottom: 40, left: 13, right: 13),
           reverse: true,
-          itemCount: loadingMessages.length,
+          itemCount: specialIdMessages.length,
           itemBuilder: (ctx, index) {
-            final chatMessage = loadingMessages[index].data();
-            final nextChatMessage = index + 1 < loadingMessages.length
-                ? loadingMessages[index + 1].data()
+            final chatMessage = specialIdMessages.elementAt(index).data();
+            final nextChatMessage = index + 1 < specialIdMessages.length
+                ? specialIdMessages.elementAt(index + 1).data()
                 : null;
 
             final currentMessageUserId = chatMessage['userId'];

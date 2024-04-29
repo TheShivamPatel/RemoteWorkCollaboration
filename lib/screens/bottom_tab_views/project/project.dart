@@ -74,18 +74,23 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
                   child: InkWell(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => ProjectDetailScreen(),));
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProjectDetailScreen(project: meeting,),
+                          ));
                     },
                     child: Material(
                       elevation: 5,
                       borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
                       child: Container(
                         padding: const EdgeInsets.all(15),
                         height: 180,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
+                          color: Colors.blue.withOpacity(0.08),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Column(
@@ -94,7 +99,6 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                             Text(meeting['title'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600)),
-
                             Text(
                                 '${meeting['start date']}   -----   ${meeting['end_date']}',
                                 style: TextStyle(
@@ -102,8 +106,6 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black87)),
                             const SizedBox(height: 15),
-
-
                             Text(
                               meeting['status'],
                               style: TextStyle(
@@ -112,32 +114,14 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                                 color: Colors.green,
                               ),
                             ),
-
                             Divider(),
-
                             const SizedBox(height: 10),
-
-                            const Row(
-                              children: [
-                                Text('70% Completed',
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.black54)),
-                                Spacer(),
-                                Row(
-                                  children: [
-                                    Icon(Icons.calendar_month_outlined, size: 16),
-                                    Text(
-                                      '18',
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.black54),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                            const Text(
+                              '70% Completed',
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.black54),
                             ),
                           ],
                         ),
