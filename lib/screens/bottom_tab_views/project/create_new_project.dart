@@ -183,14 +183,15 @@ class _CreateNewProjectState extends State<CreateNewProject> {
 
   Widget card(Widget child) {
     return Material(
-      color: Colors.white,
-      elevation: 5,
-      borderRadius: BorderRadius.circular(10),
-      shadowColor: Colors.black54,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-        child: child,
-      ),
+        color: Colors.white,
+        elevation: 5,
+        borderRadius: BorderRadius.circular(10),
+        shadowColor: Colors.black54,
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          child: child,
+        ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:chatterbox/screens/bottom_tab_views/project/project_detail_scree
 import 'package:chatterbox/screens/chat_screen.dart';
 import 'package:chatterbox/screens/confrense_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../provider/task_list_provider.dart';
@@ -60,6 +61,12 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                 style:
                     TextStyle(color: Colors.blue, fontWeight: FontWeight.w600)),
           ),
+          IconButton(
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+            icon: Icon(Icons.logout_outlined),
+          ),
         ],
       ),
       body: Column(
@@ -78,7 +85,9 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ProjectDetailScreen(project: meeting,),
+                            builder: (context) => ProjectDetailScreen(
+                              project: meeting,
+                            ),
                           ));
                     },
                     child: Material(
@@ -87,7 +96,7 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                       color: Colors.white,
                       child: Container(
                         padding: const EdgeInsets.all(15),
-                        height: 180,
+                        height: 150,
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: Colors.blue.withOpacity(0.08),
@@ -99,29 +108,36 @@ class _ProjectManagerViewState extends State<ProjectManagerView> {
                             Text(meeting['title'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600)),
+                            SizedBox(
+                              height: 5,
+                            ),
                             Text(
                                 '${meeting['start date']}   -----   ${meeting['end_date']}',
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black87)),
                             const SizedBox(height: 15),
-                            Text(
-                              meeting['status'],
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.green,
-                              ),
-                            ),
                             Divider(),
-                            const SizedBox(height: 10),
-                            const Text(
-                              '70% Completed',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.black54),
+                            const SizedBox(height: 5),
+                            Row(
+                              children: [
+                                Image.asset('assets/images/people.png',
+                                    width: 60),
+                                const SizedBox(width: 5),
+                                Text('+${meeting['team_member']}'),
+                                Spacer(),
+                                Text(
+                                  meeting['status'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                    color: meeting['status'] == 'completed'
+                                        ? Colors.green
+                                        : Colors.red.withOpacity(0.8),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
