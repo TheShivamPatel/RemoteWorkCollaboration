@@ -21,5 +21,5 @@ Tool to enhance collaboration, communication, and productivity for remote teams 
 
 ## Screen Shots
 ![Untitled design](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/4a4eab45-5c60-4bb1-8c2c-ff7f6ec5fa31)
-![Untitle![Untitled design (2)](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/6d67da19-6c1e-4686-b652-9b4f09f8e170)
-d design (1)](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/83ec0f25-4063-4eeb-aa76-5c3981492c1f)
+![Untitled design (2)](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/bd2971a2-d8bd-4a42-98b7-9da9b2ad5c49)
+![Untitled design (1)](https://github.com/TheShivamPatel/RemoteWorkCollaboration/assets/110902638/4b125606-ccbf-4aa5-a65c-b191a2492162)
